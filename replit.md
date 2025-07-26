@@ -1,8 +1,8 @@
-# Drone Image Stitcher
+# Drone Image Stitcher & NDVI Analyzer
 
 ## Overview
 
-This is a Streamlit-based web application that allows users to upload multiple drone images and stitch them together to create cohesive maps using advanced computer vision algorithms. The application leverages OpenCV for image processing and provides an intuitive interface for configuring stitching parameters.
+This is a Streamlit-based web application that allows users to upload multiple drone images and stitch them together to create cohesive maps using advanced computer vision algorithms. The application also includes comprehensive NDVI (Normalized Difference Vegetation Index) analysis capabilities for vegetation health monitoring. The application leverages OpenCV for image processing, matplotlib for NDVI visualization, and provides an intuitive tabbed interface for both stitching and analysis features.
 
 ## User Preferences
 
@@ -12,16 +12,21 @@ Preferred communication style: Simple, everyday language.
 
 ### Frontend Architecture
 - **Framework**: Streamlit web framework
-- **Interface**: Single-page application with sidebar controls
+- **Interface**: Tabbed single-page application with three main sections:
+  - Upload & Stitch: Image stitching functionality
+  - NDVI Analysis: Vegetation health analysis tools
+  - Information: Help and guidance documentation
 - **Layout**: Wide layout configuration for better image display
-- **Components**: File uploader, parameter controls, progress indicators, and download functionality
+- **Components**: File uploader, parameter controls, progress indicators, metrics display, and download functionality
 
 ### Backend Architecture
-- **Core Logic**: Python-based image processing pipeline
+- **Core Logic**: Python-based image processing and analysis pipeline
 - **Image Processing**: OpenCV library for computer vision operations
+- **Scientific Analysis**: Matplotlib for NDVI visualization and data plotting
 - **Modular Design**: Separated concerns across multiple modules:
-  - `app.py`: Main Streamlit application and UI logic
+  - `app.py`: Main Streamlit application and UI logic with tabbed interface
   - `image_stitcher.py`: Core stitching algorithms and feature detection
+  - `ndvi_analyzer.py`: NDVI calculation, visualization, and vegetation health analysis
   - `utils.py`: Helper functions for validation, preprocessing, and file operations
 
 ## Key Components
@@ -37,13 +42,21 @@ Preferred communication style: Simple, everyday language.
 - **Preprocessing**: Resizes large images to optimize processing performance
 - **Download Management**: Creates download links for processed results
 
-### 3. Streamlit Interface
-- **Parameter Controls**: Sidebar with detector selection and threshold adjustments
+### 3. NDVIAnalyzer Class
+- **Purpose**: Handles NDVI calculation and vegetation health analysis
+- **Band Processing**: Supports multiple band configurations (standard RGB, modified RGB, infrared RGB)
+- **Visualization**: Creates colored NDVI maps with customizable colormaps
+- **Analysis Metrics**: Provides comprehensive vegetation statistics and health indicators
+
+### 4. Streamlit Interface
+- **Parameter Controls**: Sidebar with detector selection, threshold adjustments, and NDVI configuration
+- **Tabbed Navigation**: Organized interface with dedicated sections for stitching and analysis
 - **Real-time Configuration**: Sliders and select boxes for interactive parameter tuning
-- **User Guidance**: Help text and tooltips for each configuration option
+- **User Guidance**: Help text, tooltips, and comprehensive information sections
 
 ## Data Flow
 
+### Image Stitching Pipeline
 1. **Image Upload**: Users upload multiple drone images through Streamlit file uploader
 2. **Validation**: Each image is validated for format and integrity
 3. **Preprocessing**: Images are resized if they exceed maximum dimensions (1500px)
@@ -52,18 +65,30 @@ Preferred communication style: Simple, everyday language.
 6. **Stitching**: Images are aligned and blended to create final panorama
 7. **Output**: Processed result is made available for download
 
+### NDVI Analysis Pipeline
+1. **Image Selection**: Users can analyze individual uploaded images or the final stitched result
+2. **Band Extraction**: Red and NIR bands are extracted based on selected configuration
+3. **NDVI Calculation**: Normalized Difference Vegetation Index is computed using the formula (NIR - Red) / (NIR + Red)
+4. **Visualization**: NDVI values are mapped to colors using matplotlib colormaps
+5. **Health Analysis**: Vegetation coverage, density, and health metrics are calculated
+6. **Reporting**: Visual comparisons, histograms, and statistical reports are generated
+7. **Export**: NDVI maps and analysis reports are made available for download
+
 ## External Dependencies
 
 ### Core Libraries
 - **Streamlit**: Web application framework for the user interface
 - **OpenCV (cv2)**: Computer vision library for image processing and stitching
-- **NumPy**: Numerical computing for array operations
+- **NumPy**: Numerical computing for array operations and NDVI calculations
 - **PIL (Pillow)**: Image manipulation and validation
+- **Matplotlib**: Scientific plotting library for NDVI visualization and analysis charts
 
 ### Algorithms
 - **SIFT**: Scale-Invariant Feature Transform for robust feature detection
 - **ORB**: Oriented FAST and Rotated BRIEF for fast feature detection
 - **RANSAC**: Random Sample Consensus for outlier detection in homography estimation
+- **NDVI**: Normalized Difference Vegetation Index for vegetation health analysis
+- **CLAHE**: Contrast Limited Adaptive Histogram Equalization for image enhancement
 
 ## Deployment Strategy
 
