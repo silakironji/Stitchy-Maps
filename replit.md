@@ -23,10 +23,12 @@ Preferred communication style: Simple, everyday language.
 - **Core Logic**: Python-based image processing and analysis pipeline
 - **Image Processing**: OpenCV library for computer vision operations
 - **Scientific Analysis**: Matplotlib for NDVI visualization and data plotting
+- **Database Layer**: PostgreSQL with SQLAlchemy ORM for data persistence
 - **Modular Design**: Separated concerns across multiple modules:
   - `app.py`: Main Streamlit application and UI logic with tabbed interface
   - `image_stitcher.py`: Core stitching algorithms and feature detection
   - `ndvi_analyzer.py`: NDVI calculation, visualization, and vegetation health analysis
+  - `database.py`: Database models, connections, and data management operations
   - `utils.py`: Helper functions for validation, preprocessing, and file operations
 
 ## Key Components
@@ -48,9 +50,17 @@ Preferred communication style: Simple, everyday language.
 - **Visualization**: Creates colored NDVI maps with customizable colormaps
 - **Analysis Metrics**: Provides comprehensive vegetation statistics and health indicators
 
-### 4. Streamlit Interface
+### 4. Database Management System
+- **Purpose**: Persistent storage and tracking of analysis sessions and results
+- **Session Management**: Create, track, and manage analysis sessions with metadata
+- **Result Storage**: Store stitching results, NDVI analyses, and processing metrics
+- **Analytics**: Provide comprehensive analytics and historical data analysis
+- **Export Capabilities**: Export session data and complete database exports
+
+### 5. Streamlit Interface
 - **Parameter Controls**: Sidebar with detector selection, threshold adjustments, and NDVI configuration
-- **Tabbed Navigation**: Organized interface with dedicated sections for stitching and analysis
+- **Tabbed Navigation**: Four-tab interface (Upload & Stitch, NDVI Analysis, Database, Information)
+- **Session Management**: Create and track analysis sessions with persistent storage
 - **Real-time Configuration**: Sliders and select boxes for interactive parameter tuning
 - **User Guidance**: Help text, tooltips, and comprehensive information sections
 
@@ -82,6 +92,9 @@ Preferred communication style: Simple, everyday language.
 - **NumPy**: Numerical computing for array operations and NDVI calculations
 - **PIL (Pillow)**: Image manipulation and validation
 - **Matplotlib**: Scientific plotting library for NDVI visualization and analysis charts
+- **SQLAlchemy**: Object-Relational Mapping (ORM) for database operations
+- **PostgreSQL**: Relational database for persistent data storage
+- **Pandas**: Data manipulation and analysis for export capabilities
 
 ### Algorithms
 - **SIFT**: Scale-Invariant Feature Transform for robust feature detection
