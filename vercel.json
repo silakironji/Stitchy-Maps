@@ -5,8 +5,8 @@
       "src": "app.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9"
+        "maxLambdaSize": "50mb",
+        "runtime": "python3.11"
       }
     }
   ],
@@ -17,11 +17,12 @@
     }
   ],
   "env": {
-    "PYTHONPATH": "."
+    "PYTHONPATH": ".",
+    "OPENCV_VIDEOIO_PRIORITY_MSMF": "0"
   },
   "functions": {
     "app.py": {
-      "maxDuration": 30
+      "maxDuration": 60
     }
   }
 }
